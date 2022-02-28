@@ -168,7 +168,7 @@ def get_time():
 def send_reminder(fund_info, config):
     date, times = get_time()
     # 填充发送内容
-    msgtitle = '交易日二点半基金涨跌信息'
+    msgtitle = config['reminder_config']['reminder_title']
     sendmsg = '|基金名称|涨跌幅|\n|:---:|:---:|\n'
     for data in fund_info:
         sendmsg += f'|{data["name"]}|{data["growth_rate"]}%|\n'
