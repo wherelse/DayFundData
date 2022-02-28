@@ -6,11 +6,13 @@ from email.mime.text import MIMEText
 from email.utils import parseaddr, formataddr
 import requests
 import markdown
-import time
 import copy
+from datetime import datetime, timezone, timedelta
 
 
 # 获取配置文件
+
+
 def read_ini_config():
     """
     读取相关配置文件
@@ -152,8 +154,14 @@ def fund_rawdata_process(fund_raw_data):
 
 
 def get_time():
-    _date = time.strftime('%Y-%m-%d', time.localtime())
-    _time = time.strftime('%H:%M:%S', time.localtime())
+    # 创建带UTC 0时区信息的当前时间
+    utc_zero = datetime.now(timezone.utc)
+    # print("UTC 0时区:", utc_zero)
+    # 将UTC 0时区时间直接转换为北京时间
+    beijing_now = utc_zero.astimezone(timezone(timedelta(hours=8)))
+    # print("北京时间:", beijing_now)
+    _date = beijing_now.strftime('%Y-%m-%d')
+    _time = beijing_now.strftime('%H:%M:%S')
     return _date, _time
 
 
@@ -185,7 +193,7 @@ def send_reminder(fund_info, config):
         send_mail(mail_content, config)
 
 
-def main_handler():
+def main_handler(event, context):
     configs = read_ini_config()
     fund_rawdata = get_fund_rawdata(configs)
     fund_infos = fund_rawdata_process(fund_rawdata)
@@ -194,4 +202,4 @@ def main_handler():
 
 
 if __name__ == '__main__':
-    main_handler()
+    main_handler("", "")
