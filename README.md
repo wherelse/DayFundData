@@ -1,5 +1,5 @@
-# DayFundInfoPush
-Information push of the fund's rise and fall on the trading day，交易日基金涨跌幅推送
+# DayFundPush
+交易日基金涨跌幅推送
 ## Introduction 前言
 - 为什么要做这个推送服务？
 一般本人会在交易日的两点半看一下当天基金的涨跌情况，然后决定买入或者卖出。但是忙于工作或者其他事情，经常性会忘记，导致错过买入卖出机会，有了这个推送之后，到时间推送，一方面解决了容易忘记的问题，另一方面也让我更容易了解基金的涨跌情况。
@@ -16,13 +16,14 @@ Information push of the fund's rise and fall on the trading day，交易日基�
 推送服务依赖于python，需要服务器具有python环境
 1. 下载代码
 ```git
-git clone https://github.com/wherelse/DayFundInfoPush.git
+git clone https://github.com/wherelse/DayFundData.git
 ```
 2. 安装依赖
 ```shell
 cd DayFundInfoPush
 pip install -r requirements.txt
 ```
+若安装失败可自行手动安装依赖库
 3. 配置信息
 配置文件`config.ini`主要包括以下几部分，使用需要进行配置：
 - mailconfig 邮箱相关信息的配置
@@ -43,6 +44,7 @@ receive_address =
 #收件人邮箱地址 
 ```
 - server酱相关信息的配置
+首先需要申请server酱的SENDKEY，官网链接：[server酱](https://sct.ftqq.com/)
 ```ini
 sendkey = 
 #server酱推送key
