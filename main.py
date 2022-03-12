@@ -125,9 +125,11 @@ def serverchan(msg, config_data):
 # 获取基金信息
 def get_fund_rawdata(config_data):
     url = 'https://api.doctorxiong.club/v1/fund?code='
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                             'Chrome/99.0.4844.51 Safari/537.36'}
     fund_id = config_data['fund']['fund_id']
     try:
-        req_result = requests.get(url + fund_id, timeout=1)
+        req_result = requests.get(url + fund_id, timeout=1, headers=headers)
         result = json.loads(req_result.text)
         if result['code'] != 200 and config_data['serverchan']['error_report'] == 'true':
             message = {'content': '基金信息获取失败', 'mailtitle': '交易日二点半基金涨跌信息'}

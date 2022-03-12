@@ -97,3 +97,4 @@ crontab -e # 进入crontab编辑模式
 
 ## 最后
 如果对你有用话，给个star是最大的鼓励，使用中遇到问题请在issue中反馈
+感谢小熊提供的基金API:[https://www.doctorxiong.club/](https://www.doctorxiong.club/)
